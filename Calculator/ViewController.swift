@@ -73,10 +73,36 @@ class ViewController: UIViewController {
             return
         }
         
-        operationLabel.text = operatorButton.titleLabel?.text
+        let operation : String = (operatorButton.titleLabel?.text)!
+        operationLabel.text = operation
         
         if storedNumber == 0 {
             toStorage()
+        } else {
+            var result: Int = 0
+            switch operation {
+            case "+":
+                result = storedNumber + inputNumber
+            case "-":
+                result = storedNumber - inputNumber
+            case "X":
+                if inputNumber == 0 {
+                    return;
+                } else {
+                    result = storedNumber * inputNumber
+                }
+                
+            case "÷":
+                if inputNumber != 0 {
+                    result = storedNumber / inputNumber
+                }
+            default:
+                return;
+            }
+            storedNumber = result
+            inputNumber = 0
+            operationLabel.text = ""
+            refreshNumber()
         }
     }
     
