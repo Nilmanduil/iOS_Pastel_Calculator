@@ -95,6 +95,8 @@ class ViewController: UIViewController {
             case "÷":
                 if inputNumber != 0 {
                     result = storedNumber / inputNumber
+                } else {
+                    return;
                 }
             default:
                 return;
@@ -113,8 +115,44 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didPressEqual(_ sender: Any) {
+        let operation : String = operationLabel.text!
+        
         if storedNumber == 0 {
             toStorage()
+        } else {
+            var result: Int = 0
+            switch operation {
+            case "+":
+                result = storedNumber + inputNumber
+                storedNumber = result
+                inputNumber = 0
+                operationLabel.text = ""
+            case "-":
+                result = storedNumber - inputNumber
+                storedNumber = result
+                inputNumber = 0
+                operationLabel.text = ""
+            case "X":
+                if inputNumber == 0 {
+                    return;
+                } else {
+                    result = storedNumber * inputNumber
+                    storedNumber = result
+                    inputNumber = 0
+                    operationLabel.text = ""
+                }
+                
+            case "÷":
+                if inputNumber != 0 {
+                    result = storedNumber / inputNumber
+                    storedNumber = result
+                    inputNumber = 0
+                    operationLabel.text = ""
+                }
+            default:
+                toStorage()
+            }
+            refreshNumber()
         }
     }
     
