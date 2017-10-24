@@ -10,8 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var operationLabel: UILabel!
+    @IBOutlet weak var inputLabel: UILabel!
     @IBOutlet weak var storeLabel: UILabel!
     
     var inputNumber: Int = 0
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
     }
     
     func refreshNumber() {
-        resultLabel.text = (inputNumber == 0 ? "" : String(describing: inputNumber))
+        inputLabel.text = (inputNumber == 0 ? "" : String(describing: inputNumber))
         storeLabel.text = String(describing: storedNumber)
     }
     
@@ -152,7 +152,7 @@ class ViewController: UIViewController {
     
     @IBAction func didPressCancel(_ sender: Any) {
         inputNumber = 0
-        resultLabel.text = ""
+        inputLabel.text = ""
         storedNumber = 0
         storeLabel.text = ""
         operationLabel.text = ""
@@ -166,7 +166,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.resultLabel.alpha = 0
+        self.inputLabel.alpha = 0
         self.operationLabel.alpha = 0
         self.storeLabel.alpha = 0
     }
@@ -174,7 +174,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIView.animate(withDuration: 2) {
-            self.resultLabel.alpha = 1
+            self.inputLabel.alpha = 1
             self.operationLabel.alpha = 1
             self.storeLabel.alpha = 1
         }
