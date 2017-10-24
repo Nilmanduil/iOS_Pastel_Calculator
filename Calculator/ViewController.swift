@@ -166,6 +166,18 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.resultLabel.alpha = 0
+        self.operationLabel.alpha = 0
+        self.storeLabel.alpha = 0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animate(withDuration: 2) {
+            self.resultLabel.alpha = 1
+            self.operationLabel.alpha = 1
+            self.storeLabel.alpha = 1
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
