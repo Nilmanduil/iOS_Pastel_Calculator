@@ -4,9 +4,10 @@
 //
 //  Created by Thibault Goudouneix on 23/10/2017.
 //  Copyright © 2017 Thibault Goudouneix. All rights reserved.
-//
+// swiftlint:disable line_length trailing_newline vertical_whitespace
 
 import UIKit
+import Sentry
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // Create a Sentry client and start crash handler
+        do {
+            Client.shared = try Client(dsn: "https://5064e6a5da1c4585916abb566b22ac05:6b819e93ffb34c3f81b1ff24c8373b28@sentry.io/247891")
+            try Client.shared?.startCrashHandler()
+        } catch let error {
+            print("\(error)")
+            // Wrong DSN or KSCrash not installed
+        }
+        
         // Override point for customization after application launch.
         return true
     }
